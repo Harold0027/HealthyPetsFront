@@ -1,15 +1,15 @@
 Front-healthypets /
 ├── public/
-├── src/
+├── src/ 
 │   ├── assets/              # Imágenes, íconos, logos
 │   ├── components/          # Componentes comunes(nav,footer,items)
 │   ├── features/            # Módulos funcionales
 │   │   └── GestionUsuarios/(funcionalidades del crud usuarios)
 │   │   └── GestionVeterinarios/(funcionalidades crud veterinarios,especialidad,horario)
 │   │   └── GestionPacientes/(crud registro de mascotas)
-│   │   └── GestionHorarios.jsx/(crud asignar y consultar horarios)
-│   │   └── GestionServicios.jsx/(mostrar servicios brindados)
-│   │   └── GestionCitas.jsx/(registrar citas)
+│   │   └── GestionHorarios/(crud asignar y consultar horarios)
+│   │   └── GestionServicios/(mostrar servicios brindados)
+│   │   └── GestionCitas/(registrar citas)
 │   │   └── GestionHistorialMedico/(consultar historial del paciente)
 │   │   └── GestionReportes/(generar reportes del servicio)
 │   │   └──Notificaciones /(pestaña de notificacion del usuario)
