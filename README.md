@@ -18,11 +18,14 @@ Front-healthypets /
 │   │   └── Footer.jsx
 │   ├── pages/               # Páginas conectadas al router
 │   │   └── Usuarios.jsx(CRUD)/
-│   │   └── Veterinarios.jsx/(crud veterinarios,especialidad,horario)
+│   │   └── VeterinariosAdmin.jsx/(crud veterinarios,especialidad,horario)
+│   │   └── VeterinariosUser.jsx/(mostrar veterinarios)
 │   │   └── Pacientes.jsx/(crud registro de mascotas)
-│   │   └── Horarios.jsx/(crud asignar y consultar horarios)
+│   │   └── HorariosAdmin.jsx/(crud, asignar y consultar horarios)
+│   │   └── HorariosUser.jsx/( consultar horarios)
 │   │   └── Servicios.jsx/(mostrar servicios brindados)
-│   │   └── Citas.jsx/(registrar citas)
+│   │   └── CitasAdmin.jsx/(crud citas)
+│   │   └── CitasUser.jsx/(consultar citas)
 │   │   └── HistorialMedico.jsx/(consultar historial del paciente)
 │   │   └── Reportes.jsx/(generar reports del servicio)
 │   │   └──Notificaciones.jsx /(pestaña de notificacion del usuario)
