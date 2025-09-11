@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 
-const ListFormItem = ({title,columns,data,onDelete}) => {
+const ListFormItem = ({title,columns,data,onDelete,category}) => {
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="mb-0">{title}</h2>
       </div>
-      <Link to='/admin/usuarios/nuevo' className='btn btn-dark'>Nuevo</Link>
 
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
@@ -37,7 +36,7 @@ const ListFormItem = ({title,columns,data,onDelete}) => {
                     </td>
                   ))}
                   <td>
-                    <Link to='/admin/usuarios/editar' className='btn btn-warning btn-sm'>Editar</Link>
+                    <Link to={`/admin/${category}/editar/${item.id ?? item._id}`} className='btn btn-warning btn-sm'>Editar</Link>
                     <button className="btn btn-danger btn-sm" onClick={() => onDelete(item)}>
                       Eliminar
                     </button>
@@ -47,6 +46,8 @@ const ListFormItem = ({title,columns,data,onDelete}) => {
             )}
           </tbody>
         </table>
+        <Link to={`/admin/${category}/nuevo`} className='btn btn-dark'>Agregar </Link>
+
       </div>
     </div>
   );

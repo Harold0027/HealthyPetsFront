@@ -4,6 +4,8 @@ import VeterinariosAdmin from "./pages/VeterianriosAdmin"
 import PacientesAdmin from "./pages/PacientesAdmin"
 import HorariosAdmin from "./pages/HorariosAdmin"
 import CitasAdmin from "./pages/CitasAdmin";
+import Editar from "./pages/Editar"
+import Nuevo from "./pages/Nuevo"
 
 function App() {
 
@@ -15,6 +17,9 @@ function App() {
         <Route path="/admin/pacientes" element={<PacientesAdmin />} />
         <Route path="/admin/horarios" element={<HorariosAdmin />} />
         <Route path="/admin/citas" element={<CitasAdmin />} />
+        <Route path="/admin/:category/nuevo" element={<Nuevo />} />
+        <Route path="/admin/:category/editar/:id" element={<Editar />} />
+        
       </Routes>
     </Router>
   )

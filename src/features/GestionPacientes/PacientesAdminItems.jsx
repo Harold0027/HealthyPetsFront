@@ -1,17 +1,20 @@
 import ListFormContainer from "../../components/ListFormContainer";
 
-const PacientesAdminItem = () => { 
+const PacientesAdminItem = () => {
   // Datos de prueba (luego reemplazamos con fetch al backend)
   const pacientes = [
-    { id: 1, nombre: "Firulais", especie: "Perro", edad: 3, dueño: "Juan Pérez" },
-    { id: 2, nombre: "Michi", especie: "Gato", edad: 2, dueño: "Ana López" },
-    { id: 3, nombre: "Max", especie: "Conejo", edad: 1, dueño: "Carlos Ramírez" },
+    { id: 1,dueño_id: 23 ,nombre: "Firulais", especie: "Perro",raza:"pitbul" , edad: 3, dueño: "Juan Pérez" },
+    { id: 2,dueño_id: 33 ,nombre: "Michi", especie: "Gato",raza: "normal", edad: 2, dueño: "Ana López" },
+    { id: 3,dueño_id: 25 ,nombre: "Max", especie: "Conejo",raza: "normal", edad: 1, dueño: "Carlos Ramírez" },
   ];
 
   // Columnas de la tabla (pueden variar según tu backend)
   const columns = [
+    { key: "id", label: "Id" },
+    { key: "dueño_id", label: "Dueño_id" },
     { key: "nombre", label: "Nombre" },
     { key: "especie", label: "Especie" },
+    { key: "raza", label: "Raza" },
     { key: "edad", label: "Edad" },
     { key: "dueño", label: "Dueño" },
   ];
@@ -21,6 +24,7 @@ const PacientesAdminItem = () => {
   return (
     <ListFormContainer
       title="Pacientes"
+      category= "pacientes"
       data={pacientes}
       columns={columns}
       onDelete={handleDelete}

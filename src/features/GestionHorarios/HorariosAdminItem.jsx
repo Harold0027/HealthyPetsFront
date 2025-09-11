@@ -11,6 +11,7 @@ const HorariosItem = () => {
 
   // Columnas de la tabla
   const columns = [
+    { key: "id", label: "Id" },
     { key: "veterinario", label: "Veterinario" },
     { key: "dia", label: "Día" },
     { key: "horaInicio", label: "Hora Inicio" },
@@ -24,6 +25,7 @@ const HorariosItem = () => {
   return (
     <ListFormContainer
       title="Horarios"
+      category= "horarios"
       data={horarios}
       columns={columns}
       onDelete={handleDelete}
