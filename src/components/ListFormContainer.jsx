@@ -1,7 +1,7 @@
 import ListFormItem from "./ListFormItem";
 
 const ListFormContainer = ({title,columns,data,onDelete,category}) => {
-
+    //aca se hara la conexion con la base de datos
 
   return (
     <ListFormItem

@@ -1,12 +1,13 @@
+import { useState } from "react";
 import ListFormContainer from "../../components/ListFormContainer";
 
 const VeterinariosItem = () => {
   // Datos de prueba (luego vendrán del backend con fetch)
-  const veterinarios = [
+  const [veterinarios, setVeterinarios] = useState([
     { id: 1, nombre: "Dr. Pérez", especialidad: "Felinos", correo: "ejemplo1gmail.com",telefono: "987654321", direccion: "Los olivos" },
     { id: 2, nombre: "Dra. López", especialidad: "Caninos", correo: "ejempl2gmail.com",telefono: "912345678", direccion: "San miguel" },
     { id: 3, nombre: "Dr. Ramírez", especialidad: "Exóticos", correo: "ejemp3gmail.com",telefono: "900112233", direccion: "Comas" },
-  ];
+  ]);
 
   // Columnas que queremos mostrar en la tabla
   const columns = [
@@ -17,6 +18,7 @@ const VeterinariosItem = () => {
     { key: "telefono", label: "Teléfono" },
     { key: "direccion", label: "Direccion" },
   ];
+  const handleDelete = (veterinario) => setVeterinarios(veterinarios.filter((v)=>v.id !== veterinario.id)); 
 
   return (
     <ListFormContainer
@@ -24,6 +26,7 @@ const VeterinariosItem = () => {
       category= "veterinarios"
       data={veterinarios}
       columns={columns}
+      onDelete={handleDelete}
     />
   );
 };

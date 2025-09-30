@@ -1,12 +1,13 @@
+import { useState } from "react";
 import ListFormContainer from "../../components/ListFormContainer";
 
 const PacientesAdminItem = () => {
   // Datos de prueba (luego reemplazamos con fetch al backend)
-  const pacientes = [
+  const [pacientes, setPacientes] = useState([
     { id: 1,dueño_id: 23 ,nombre: "Firulais", especie: "Perro",raza:"pitbul" , edad: 3, dueño: "Juan Pérez" },
     { id: 2,dueño_id: 33 ,nombre: "Michi", especie: "Gato",raza: "normal", edad: 2, dueño: "Ana López" },
     { id: 3,dueño_id: 25 ,nombre: "Max", especie: "Conejo",raza: "normal", edad: 1, dueño: "Carlos Ramírez" },
-  ];
+  ]);
 
   // Columnas de la tabla (pueden variar según tu backend)
   const columns = [
@@ -18,12 +19,12 @@ const PacientesAdminItem = () => {
     { key: "edad", label: "Edad" },
     { key: "dueño", label: "Dueño" },
   ];
-  const handleDelete = (id) => {
-    setPacientes((prev) => prev.filter((p) => p.id !== id));
-  };
+
+  const handleDelete = (paciente) => setPacientes(pacientes.filter((p)=>p.id !== paciente.id)); 
+  
   return (
     <ListFormContainer
-      title="Pacientes"
+      title="Gestion de pacientes"
       category= "pacientes"
       data={pacientes}
       columns={columns}

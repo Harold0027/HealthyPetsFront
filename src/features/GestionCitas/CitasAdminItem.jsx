@@ -39,9 +39,7 @@ const CitasAdminItem = () => {
     { key: "motivo", label: "Motivo" },
   ];
 
-  const handleDelete = (cita) => {
-    setCitas((prev) => prev.filter((c) => c.id !== cita.id));
-  };
+ const handleDelete = (cita) => setCitas(citas.filter((c) => c.id !== cita.id));
 
   return (
     <ListFormContainer

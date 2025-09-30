@@ -18,9 +18,7 @@ const HorariosItem = () => {
     { key: "horaFin", label: "Hora Fin" },
   ];
 
-  const handleDelete = (id) => {
-    setHorarios((prev) => prev.filter((h) => h.id !== id));
-  };
+  const handleDelete = (horario) => setHorarios(horarios.filter((h)=>h.id !== horario.id));
 
   return (
     <ListFormContainer
