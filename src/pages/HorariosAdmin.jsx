@@ -1,14 +1,7 @@
-import AdminLayout from "../layouts/AdminLayout";
-import HorariosAdminItem from "../features/GestionHorarios/HorariosAdminItem"
+import HorariosAdminItem from "../features/GestionHorarios/HorariosAdminItem";
 
 const HorariosAdmin = () => {
-  return (
-    <div>
-        <AdminLayout>
-            <HorariosAdminItem />
-        </AdminLayout>
-    </div>
-  )
-}
+  return <HorariosAdminItem />;
+};
 
-export default HorariosAdmin
+export default HorariosAdmin;

@@ -1,13 +1,7 @@
-import AdminLayout from "../layouts/AdminLayout"
-import CitasAdminItem from "../features/GestionCitas/CitasAdminItem"
-const CitasAdmin = () => {
-  return (
-    <div>
-      <AdminLayout>
-        <CitasAdminItem/>
-      </AdminLayout>
-    </div>
-  )
-}
+import CitasAdminItem from "../features/GestionCitas/CitasAdminItem";
 
-export default CitasAdmin
+const CitasAdmin = () => {
+  return <CitasAdminItem />;
+};
+
+export default CitasAdmin;

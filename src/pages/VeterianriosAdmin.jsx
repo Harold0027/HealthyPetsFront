@@ -1,14 +1,7 @@
-import AdminLayout from "../layouts/AdminLayout"
-import VeterinariosAdminItem from "../features/GestionVeterinarios/VeterinariosAdminItem"
+import VeterinariosAdminItem from "../features/GestionVeterinarios/VeterinariosAdminItem";
 
-const VeterianriosAdmin = () => {
-  return (
-    <div>
-        <AdminLayout>
-            <VeterinariosAdminItem />
-        </AdminLayout>
-    </div>
-  )
-}
+const VeterinariosAdmin = () => {
+  return <VeterinariosAdminItem />;
+};
 
-export default VeterianriosAdmin
+export default VeterinariosAdmin;
