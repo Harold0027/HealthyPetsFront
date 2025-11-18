@@ -1,15 +1,6 @@
-import  { useState } from "react";
-import ListFormContainer from "../../components/ListFormContainer";
+import HorariosForm from "./HorariosAdminForm";
 
-const HorariosItem = () => {
-  // Estado inicial de prueba
-  const [horarios, setHorarios] = useState([
-    { id: 1, veterinario: "Dr. Ramírez", dia: "Lunes", horaInicio: "09:00", horaFin: "13:00" },
-    { id: 2, veterinario: "Dra. Gómez", dia: "Martes", horaInicio: "10:00", horaFin: "14:00" },
-    { id: 3, veterinario: "Dr. Pérez", dia: "Viernes", horaInicio: "15:00", horaFin: "19:00" },
-  ]);
-
-  // Columnas de la tabla
+const HorariosAdminItem = ({ data, onDelete }) => {
   const columns = [
     { key: "id", label: "Id" },
     { key: "veterinario", label: "Veterinario" },
@@ -18,17 +9,15 @@ const HorariosItem = () => {
     { key: "horaFin", label: "Hora Fin" },
   ];
 
-  const handleDelete = (horario) => setHorarios(horarios.filter((h)=>h.id !== horario.id));
-
   return (
-    <ListFormContainer
-      title="Horarios"
-      category= "horarios"
-      data={horarios}
+    <HorariosForm
+      title="Gestión de Horarios"
+      category="horarios"
+      data={data}
       columns={columns}
-      onDelete={handleDelete}
+      onDelete={onDelete}
     />
   );
 };
 
-export default HorariosItem;
+export default HorariosAdminItem;

@@ -11,6 +11,7 @@ import VeterinariosUser from "./pages/VeterinariosUser";
 import Servicios from "./pages/Servicios"
 import HistorialMedico from "./pages/HistorialMedico";
 import CitasUser from "./pages/CitasUser";
+import LoginContainer from "./features/Login/loginContainer";
 function App() {
 
   return (
@@ -29,7 +30,7 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/citas" element={<CitasUser />} />
         <Route path="/historial" element={<HistorialMedico />} />
-        
+        <Route path="/login" element={<LoginContainer />} />
 
       </Routes>
     </Router>

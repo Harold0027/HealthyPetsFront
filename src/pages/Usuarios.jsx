@@ -1,11 +1,10 @@
 import AdminLayout from "../layouts/AdminLayout";
-import UsuarioItem from "../features/GestionUsuarios/UsuarioItem";
-
+import UsuarioItemContainer from "../features/GestionUsuarios/UsuarioItemContainer";
 
 const Usuarios = () => {
   return (
     <AdminLayout>
-      <UsuarioItem />
+      <UsuarioItemContainer />
     </AdminLayout>
   );
 };

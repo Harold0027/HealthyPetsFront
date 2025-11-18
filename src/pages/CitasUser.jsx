@@ -1,12 +1,12 @@
-import  UserLayout from "../layouts/UserLayout"
+import UserLayout from "../layouts/UserLayout";
+import CitasListContainer from "../features/GestionCitas/CitasListContainer";
+
 const CitasUser = () => {
   return (
-    <div>
-      <UserLayout>
-        Citas
-      </UserLayout>
-    </div>
-  )
-}
+    <UserLayout>
+      <CitasListContainer />
+    </UserLayout>
+  );
+};
 
-export default CitasUser
+export default CitasUser;

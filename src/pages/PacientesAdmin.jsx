@@ -1,14 +1,12 @@
 import AdminLayout from "../layouts/AdminLayout";
-import PacientesAdminItem from "../features/GestionPacientes/PacientesAdminItems"
+import PacientesAdminItemContainer from "../features/GestionPacientes/PacientesAdminItemContainer";
 
 const PacientesAdmin = () => {
   return (
-    <div>
-       <AdminLayout>
-            <PacientesAdminItem />
-        </AdminLayout>
-    </div>
-  )
-}
+    <AdminLayout>
+      <PacientesAdminItemContainer />
+    </AdminLayout>
+  );
+};
 
-export default PacientesAdmin
+export default PacientesAdmin;
