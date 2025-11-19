@@ -25,40 +25,17 @@ const UsuarioForm = ({ onSubmit, initialData }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="nombre"
-        placeholder="Nombre"
-        value={user.nombre}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={user.email}
-        onChange={handleChange}
-        required
-      />
+      <input name="nombre" value={user.nombre} onChange={handleChange} placeholder="Nombre" required />
+      <input name="email" value={user.email} onChange={handleChange} placeholder="Email" required />
+      
       <select name="rol" value={user.rol} onChange={handleChange}>
         <option value="USER">USER</option>
         <option value="ADMIN">ADMIN</option>
       </select>
-      <input
-        type="text"
-        name="telefono"
-        placeholder="Telefono"
-        value={user.telefono}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="direccion"
-        placeholder="Direccion"
-        value={user.direccion}
-        onChange={handleChange}
-      />
+
+      <input name="telefono" value={user.telefono} onChange={handleChange} placeholder="Teléfono" />
+      <input name="direccion" value={user.direccion} onChange={handleChange} placeholder="Dirección" />
+
       <button type="submit">Guardar</button>
     </form>
   );

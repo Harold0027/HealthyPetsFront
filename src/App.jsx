@@ -12,28 +12,33 @@ import Servicios from "./pages/Servicios"
 import HistorialMedico from "./pages/HistorialMedico";
 import CitasUser from "./pages/CitasUser";
 import LoginContainer from "./features/Login/loginContainer";
+import { AuthProvider } from "./features/Login/AuthContext";
+
+
 function App() {
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/admin/usuarios" element={<Usuarios />} />
-        <Route path="/admin/veterinarios" element={<VeterinariosAdmin />} />
-        <Route path="/admin/pacientes" element={<PacientesAdmin />} />
-        <Route path="/admin/horarios" element={<HorariosAdmin />} />
-        <Route path="/admin/citas" element={<CitasAdmin />} />
-        <Route path="/admin/:category/nuevo" element={<Nuevo />} />
-        <Route path="/admin/:category/editar/:id" element={<Editar />} />
-        
-        <Route path="/" element={<Home />} />
-        <Route path="/veterinarios" element={<VeterinariosUser />} />
-        <Route path="/servicios" element={<Servicios />} />
-        <Route path="/citas" element={<CitasUser />} />
-        <Route path="/historial" element={<HistorialMedico />} />
-        <Route path="/login" element={<LoginContainer />} />
+    <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/admin/usuarios" element={<Usuarios />} />
+            <Route path="/admin/veterinarios" element={<VeterinariosAdmin />} />
+            <Route path="/admin/pacientes" element={<PacientesAdmin />} />
+            <Route path="/admin/horarios" element={<HorariosAdmin />} />
+            <Route path="/admin/citas" element={<CitasAdmin />} />
+            <Route path="/admin/:category/nuevo" element={<Nuevo />} />
+            <Route path="/admin/:category/editar/:id" element={<Editar />} />
+            
+            <Route path="/" element={<Home />} />
+            <Route path="/veterinarios" element={<VeterinariosUser />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/citas" element={<CitasUser />} />
+            <Route path="/historial" element={<HistorialMedico />} />
+            <Route path="/login" element={<LoginContainer />} />
 
-      </Routes>
-    </Router>
+          </Routes>
+        </Router>
+    </AuthProvider>
   )
 }
 

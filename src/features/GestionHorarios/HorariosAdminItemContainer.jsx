@@ -5,26 +5,27 @@ import { getHorarios, deleteHorario } from "../../services/HorariosService";
 const HorariosAdminItemContainer = () => {
   const [horarios, setHorarios] = useState([]);
 
-  const fetchHorarios = async () => {
+  const load = async () => {
     try {
-      const response = await getHorarios();
-      setHorarios(response.data);
-    } catch (error) {
-      console.error("Error cargando horarios:", error);
+      const res = await getHorarios();
+      setHorarios(res);
+    } catch (e) {
+      console.error("Error cargando horarios:", e);
     }
   };
 
   const handleDelete = async (horario) => {
+    if (!window.confirm("¿Eliminar este horario?")) return;
     try {
       await deleteHorario(horario.id);
-      setHorarios(horarios.filter(h => h.id !== horario.id));
-    } catch (error) {
-      console.error("Error eliminando horario:", error);
+      load();
+    } catch (e) {
+      console.error("Error eliminando horario:", e);
     }
   };
 
   useEffect(() => {
-    fetchHorarios();
+    load();
   }, []);
 
   return <HorariosAdminItem data={horarios} onDelete={handleDelete} />;

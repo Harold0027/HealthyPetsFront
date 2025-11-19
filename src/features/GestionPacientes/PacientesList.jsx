@@ -11,7 +11,7 @@ const PacientesList = ({ pacientes }) => {
           <thead className="table-dark">
             <tr>
               <th>Nombre</th>
-              <th>Dueño</th>
+              <th>Propietario</th>
               <th>Especie</th>
               <th>Raza</th>
               <th>Edad</th>
@@ -28,7 +28,7 @@ const PacientesList = ({ pacientes }) => {
               pacientes.map(p => (
                 <tr key={p.id}>
                   <td>{p.nombre}</td>
-                  <td>{p.dueño}</td>
+                  <td>{p.duenoNombre}</td>
                   <td>{p.especie}</td>
                   <td>{p.raza}</td>
                   <td>{p.edad}</td>

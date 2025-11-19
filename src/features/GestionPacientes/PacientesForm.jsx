@@ -1,70 +1,69 @@
-import { Table, Button, Card } from "react-bootstrap";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const PacientesForm = ({ title, columns, data, onDelete, category }) => {
+const PacientesForm = ({ onSubmit, initialData }) => {
+  const [paciente, setPaciente] = useState({
+    duenoId: "",
+    nombre: "",
+    especie: "",
+    raza: "",
+    edad: "",
+  });
+
+  useEffect(() => {
+    if (initialData) setPaciente(initialData);
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPaciente({ ...paciente, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(paciente);
+  };
+
   return (
-    <Card className="shadow-sm mb-4">
-      <Card.Header className="d-flex justify-content-between align-items-center">
-        <h4>{title}</h4>
-        <Button
-          as={Link}
-          to={`/admin/${category}/nuevo`}
-          variant="dark"
-          className="d-flex align-items-center gap-2"
-        >
-          <FaPlus /> Agregar
-        </Button>
-      </Card.Header>
-      <Card.Body>
-        <Table striped bordered hover responsive className="align-middle">
-          <thead className="table-dark">
-            <tr>
-              {columns.map(col => (
-                <th key={col.key} className="text-center">{col.label}</th>
-              ))}
-              <th className="text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length + 1} className="text-center text-muted py-4">
-                  No hay registros
-                </td>
-              </tr>
-            ) : (
-              data.map(item => (
-                <tr key={item.id}>
-                  {columns.map(col => (
-                    <td key={col.key} className="text-center">{item[col.key]}</td>
-                  ))}
-                  <td className="text-center">
-                    <Button
-                      as={Link}
-                      to={`/admin/${category}/editar/${item.id}`}
-                      variant="warning"
-                      size="sm"
-                      className="me-2 d-flex align-items-center gap-1"
-                    >
-                      <FaEdit /> Editar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      className="d-flex align-items-center gap-1"
-                      onClick={() => onDelete(item)}
-                    >
-                      <FaTrash /> Eliminar
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
-      </Card.Body>
-    </Card>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="duenoId"
+        placeholder="ID del propietario"
+        value={paciente.duenoId}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre del paciente"
+        value={paciente.nombre}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="especie"
+        placeholder="Especie"
+        value={paciente.especie}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="raza"
+        placeholder="Raza"
+        value={paciente.raza}
+        onChange={handleChange}
+      />
+      <input
+        type="number"
+        name="edad"
+        placeholder="Edad"
+        value={paciente.edad}
+        onChange={handleChange}
+      />
+      <button type="submit">Guardar</button>
+    </form>
   );
 };
 

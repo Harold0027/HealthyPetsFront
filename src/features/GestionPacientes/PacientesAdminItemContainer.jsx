@@ -7,8 +7,8 @@ const PacientesAdminItemContainer = () => {
 
   const fetchPacientes = async () => {
     try {
-      const response = await getPacientes();
-      setPacientes(response.data);
+      const data = await getPacientes();
+      setPacientes(data);
     } catch (error) {
       console.error("Error cargando pacientes:", error);
     }
@@ -17,7 +17,7 @@ const PacientesAdminItemContainer = () => {
   const handleDelete = async (paciente) => {
     try {
       await deletePaciente(paciente.id);
-      setPacientes(pacientes.filter(p => p.id !== paciente.id));
+      setPacientes(pacientes.filter((p) => p.id !== paciente.id));
     } catch (error) {
       console.error("Error eliminando paciente:", error);
     }

@@ -7,8 +7,8 @@ const PacientesContainer = () => {
 
   const fetchPacientes = async () => {
     try {
-      const response = await getPacientes();
-      setPacientes(response.data);
+      const data = await getPacientes();
+      setPacientes(data);
     } catch (error) {
       console.error("Error cargando pacientes:", error);
     }

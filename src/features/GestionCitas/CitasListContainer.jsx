@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import CitasList from "./CitasList";
-import { getCitas } from "../../services/CitasService";
+import { CitasService } from "../../services/CitasService";
 
 const CitasListContainer = () => {
   const [citas, setCitas] = useState([]);
 
   const fetchCitas = async () => {
     try {
-      const response = await getCitas();
-      setCitas(response.data);
+      const data = await CitasService.getAll();
+      setCitas(data);
     } catch (error) {
       console.error("Error cargando citas:", error);
     }

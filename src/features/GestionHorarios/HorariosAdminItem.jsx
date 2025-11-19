@@ -1,4 +1,4 @@
-import HorariosForm from "./HorariosAdminForm";
+import HorariosForm from "../GestionHorarios/HorariosAdminForm";
 
 const HorariosAdminItem = ({ data, onDelete }) => {
   const columns = [

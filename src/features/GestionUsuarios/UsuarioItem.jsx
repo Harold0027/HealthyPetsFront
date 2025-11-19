@@ -1,4 +1,5 @@
 import ListFormItem from "../../components/ListFormItem";
+import { Link } from "react-router-dom";
 
 const UsuarioItem = ({ data, onDelete }) => {
   const columns = [
@@ -11,13 +12,23 @@ const UsuarioItem = ({ data, onDelete }) => {
   ];
 
   return (
-    <ListFormItem
-      title="Gestión de Usuarios"
-      columns={columns}
-      data={data}
-      onDelete={onDelete}
-      category="usuarios"
-    />
+    <>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+        <h2>Gestión de Usuarios</h2>
+
+        <Link to="/admin/usuarios/nuevo">
+          <button>Nuevo Usuario</button>
+        </Link>
+      </div>
+
+      <ListFormItem
+        title="Usuarios"
+        columns={columns}
+        data={data}
+        onDelete={onDelete}
+        category="usuarios"
+      />
+    </>
   );
 };
 

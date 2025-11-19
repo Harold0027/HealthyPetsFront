@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import CitasAdminItem from "./CitasAdminItem";
-import { getCitas, deleteCita } from "../../services/CitasService";
+import { CitasService } from "../../services/CitasService";
 
 const CitasAdminItemContainer = () => {
   const [citas, setCitas] = useState([]);
 
   const fetchCitas = async () => {
     try {
-      const response = await getCitas();
-      setCitas(response.data);
+      const data = await CitasService.getAll();
+      setCitas(data);
     } catch (error) {
       console.error("Error cargando citas:", error);
     }
@@ -16,7 +16,7 @@ const CitasAdminItemContainer = () => {
 
   const handleDelete = async (cita) => {
     try {
-      await deleteCita(cita.id);
+      await CitasService.remove(cita.id);
       setCitas(citas.filter(c => c.id !== cita.id));
     } catch (error) {
       console.error("Error eliminando cita:", error);

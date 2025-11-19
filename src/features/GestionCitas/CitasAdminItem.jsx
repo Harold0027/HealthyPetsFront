@@ -2,11 +2,10 @@ import CitasAdminForm from "./CitasAdminForm";
 
 const CitasAdminItem = ({ data, onDelete }) => {
   const columns = [
-    { key: "id", label: "Id" },
+    { key: "id", label: "ID" },
     { key: "paciente", label: "Paciente" },
     { key: "propietario", label: "Propietario" },
-    { key: "veterinario_id", label: "Veterinario (ID)" },
-    { key: "mascota_id", label: "Mascota (ID)" },
+    { key: "veterinario", label: "Veterinario" },
     { key: "fecha", label: "Fecha" },
     { key: "hora", label: "Hora" },
     { key: "motivo", label: "Motivo" },
