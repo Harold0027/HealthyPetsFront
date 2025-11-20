@@ -1,38 +1,40 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm";
-import { loginUser } from "../../service/authService";
+import { loginUser } from "../../services/authService";
 
 const LoginContainer = () => {
-  const navigate = useNavigate();
-  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { ok, data } = await loginUser(usernameOrEmail, password);
-    console.log("LoginContainer received:", data);
+    const response = await loginUser(email, password);
 
-    if (ok && data.token) {
-      localStorage.setItem("token", data.token);
-      setMessage("¡Login exitoso!");
+    if (response.ok) {
       setSuccess(true);
+      setMessage("Inicio de sesión exitoso");
 
-      setTimeout(() => navigate("/"), 1000); // redirige al home
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("role", response.data.role);
+
+      navigate("/");
     } else {
-      setMessage(data.message || "Credenciales inválidas");
       setSuccess(false);
+      setMessage("Credenciales incorrectas");
     }
   };
 
   return (
     <LoginForm
-      usernameOrEmail={usernameOrEmail}
+      email={email}
       password={password}
-      setUsernameOrEmail={setUsernameOrEmail}
+      setEmail={setEmail}
       setPassword={setPassword}
       handleSubmit={handleSubmit}
       message={message}

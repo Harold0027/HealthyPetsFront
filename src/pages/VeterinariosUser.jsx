@@ -1,5 +1,7 @@
 import UserLayout from "../layouts/UserLayout";
-import VeterinariosContainer from "../features/GestionVeterinarios/VeterinariosContainer";
+
+// Import corregido: ahora usa el archivo que SÍ existe
+import VeterinariosContainer from "../features/GestionVeterinarios/VeterinariosListContainer";
 
 const VeterinariosUser = () => {
   return (

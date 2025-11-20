@@ -1,34 +1,51 @@
 import { useState, useEffect } from "react";
 import HorariosAdminItem from "./HorariosAdminItem";
-import { getHorarios, deleteHorario } from "../../services/HorariosService";
+
+import {
+  getHorarios,
+  deleteHorario
+} from "../../services/HorarioService";
 
 const HorariosAdminItemContainer = () => {
   const [horarios, setHorarios] = useState([]);
 
-  const load = async () => {
+  const cargarHorarios = async () => {
     try {
-      const res = await getHorarios();
-      setHorarios(res);
-    } catch (e) {
-      console.error("Error cargando horarios:", e);
+      const data = await getHorarios();
+      setHorarios(data);
+    } catch (error) {
+      console.error("Error al cargar horarios:", error);
     }
   };
 
-  const handleDelete = async (horario) => {
-    if (!window.confirm("¿Eliminar este horario?")) return;
+  const eliminar = async (id) => {
     try {
-      await deleteHorario(horario.id);
-      load();
-    } catch (e) {
-      console.error("Error eliminando horario:", e);
+      await deleteHorario(id);
+      cargarHorarios();
+    } catch (error) {
+      console.error("Error al eliminar horario:", error);
     }
   };
 
   useEffect(() => {
-    load();
+    cargarHorarios();
   }, []);
 
-  return <HorariosAdminItem data={horarios} onDelete={handleDelete} />;
+  return (
+    <div>
+      {horarios.length > 0 ? (
+        horarios.map((item) => (
+          <HorariosAdminItem
+            key={item.id}
+            horario={item}
+            eliminar={eliminar}
+          />
+        ))
+      ) : (
+        <p>No hay horarios registrados.</p>
+      )}
+    </div>
+  );
 };
 
 export default HorariosAdminItemContainer;

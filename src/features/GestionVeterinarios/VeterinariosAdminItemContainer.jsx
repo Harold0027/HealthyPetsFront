@@ -1,33 +1,49 @@
 import { useState, useEffect } from "react";
 import VeterinariosAdminItem from "./VeterinariosAdminItem";
-import { getVeterinarios, deleteVeterinario } from "../../services/VeterinariosService";
+
+// ✔ Import correcto del servicio
+import { VeterinariosService } from "../../services/VeterinariosService";
 
 const VeterinariosAdminItemContainer = () => {
   const [veterinarios, setVeterinarios] = useState([]);
 
-  const fetchVeterinarios = async () => {
+  const cargarVeterinarios = async () => {
     try {
-      const response = await getVeterinarios();
-      setVeterinarios(response.data);
+      const data = await VeterinariosService.getAll();
+      setVeterinarios(data);
     } catch (error) {
       console.error("Error al cargar veterinarios:", error);
     }
   };
 
-  const handleDelete = async (vet) => {
+  const eliminar = async (id) => {
     try {
-      await deleteVeterinario(vet.id);
-      setVeterinarios(veterinarios.filter(v => v.id !== vet.id));
+      await VeterinariosService.remove(id);
+      cargarVeterinarios();
     } catch (error) {
-      console.error("Error eliminando veterinario:", error);
+      console.error("Error al eliminar veterinario:", error);
     }
   };
 
   useEffect(() => {
-    fetchVeterinarios();
+    cargarVeterinarios();
   }, []);
 
-  return <VeterinariosAdminItem data={veterinarios} onDelete={handleDelete} />;
+  return (
+    <div>
+      {veterinarios.length > 0 ? (
+        veterinarios.map((v) => (
+          <VeterinariosAdminItem
+            key={v.id}
+            veterinario={v}
+            eliminar={eliminar}
+          />
+        ))
+      ) : (
+        <p>No hay veterinarios registrados.</p>
+      )}
+    </div>
+  );
 };
 
 export default VeterinariosAdminItemContainer;

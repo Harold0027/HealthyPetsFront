@@ -1,24 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import VeterinariosList from "./VeterinariosList";
-import { getVeterinarios } from "../../services/VeterinariosService";
 
-const VeterinariosContainer = () => {
+// ✔ Import correcto
+import { VeterinariosService } from "../../services/VeterinariosService";
+
+const VeterinariosListContainer = () => {
   const [veterinarios, setVeterinarios] = useState([]);
 
-  const fetchVeterinarios = async () => {
+  const cargarVeterinarios = async () => {
     try {
-      const response = await getVeterinarios();
-      setVeterinarios(response.data);
+      const data = await VeterinariosService.getAll(); // ✔ Correcto
+      setVeterinarios(data);
     } catch (error) {
       console.error("Error cargando veterinarios:", error);
     }
   };
 
   useEffect(() => {
-    fetchVeterinarios();
+    cargarVeterinarios();
   }, []);
 
-  return <VeterinariosList veterinarios={veterinarios} />;
+  return (
+    <div>
+      {veterinarios.length > 0 ? (
+        <VeterinariosList veterinarios={veterinarios} />
+      ) : (
+        <p>No hay veterinarios registrados.</p>
+      )}
+    </div>
+  );
 };
 
-export default VeterinariosContainer;
+export default VeterinariosListContainer;
