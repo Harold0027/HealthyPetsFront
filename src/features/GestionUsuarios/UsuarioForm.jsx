@@ -1,21 +1,26 @@
 import { useState, useEffect } from "react";
 
-const UsuarioForm = ({ onSubmit, initialData }) => {
+const UsuarioForm = ({ initialData, onSubmit }) => {
   const [user, setUser] = useState({
-    nombre: "",
+    fullName: "",
     email: "",
-    rol: "USER",
+    password: "",
+    role: "USER",
     telefono: "",
     direccion: "",
   });
 
   useEffect(() => {
-    if (initialData) setUser(initialData);
+    if (initialData) {
+      setUser({
+        ...initialData,
+        password: "", // No mostrar password existente
+      });
+    }
   }, [initialData]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -25,18 +30,58 @@ const UsuarioForm = ({ onSubmit, initialData }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="nombre" value={user.nombre} onChange={handleChange} placeholder="Nombre" required />
-      <input name="email" value={user.email} onChange={handleChange} placeholder="Email" required />
-      
-      <select name="rol" value={user.rol} onChange={handleChange}>
+      <input
+        name="fullName"
+        placeholder="Nombre"
+        value={user.fullName}
+        onChange={handleChange}
+        required
+      />
+
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        value={user.email}
+        onChange={handleChange}
+        required
+      />
+
+      {!initialData && (
+        <input
+          name="password"
+          type="password"
+          placeholder="Contraseña"
+          value={user.password}
+          onChange={handleChange}
+          required
+        />
+      )}
+
+      <select
+        name="role"
+        value={user.role}
+        onChange={handleChange}
+      >
         <option value="USER">USER</option>
         <option value="ADMIN">ADMIN</option>
       </select>
 
-      <input name="telefono" value={user.telefono} onChange={handleChange} placeholder="Teléfono" />
-      <input name="direccion" value={user.direccion} onChange={handleChange} placeholder="Dirección" />
+      <input
+        name="telefono"
+        placeholder="Teléfono"
+        value={user.telefono}
+        onChange={handleChange}
+      />
 
-      <button type="submit">Guardar</button>
+      <input
+        name="direccion"
+        placeholder="Dirección"
+        value={user.direccion}
+        onChange={handleChange}
+      />
+
+      <button type="submit">{initialData ? "Actualizar" : "Crear"}</button>
     </form>
   );
 };

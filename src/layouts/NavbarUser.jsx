@@ -9,12 +9,12 @@ const NavbarUser = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <nav className="bg-white shadow-sm py-2 px-4 d-flex align-items-center justify-content-between">
-      <Link to="/">
+      <Link to="/home">
         <img src={logo} alt="logo" style={{ width: "3rem" }} />
       </Link>
 
@@ -40,11 +40,10 @@ const NavbarUser = () => {
           🔔
         </Link>
 
-        {/* 🔥 BOTÓN LOGIN / LOGOUT SEGÚN TOKEN */}
         {!user ? (
           <Link
             className="btn btn-success px-3 py-1"
-            to="/login"
+            to="/"
           >
             Iniciar Sesión
           </Link>

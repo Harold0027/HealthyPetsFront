@@ -23,7 +23,7 @@ const LoginContainer = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.role);
 
-      navigate("/");
+      navigate("/home");
     } else {
       setSuccess(false);
       setMessage("Credenciales incorrectas");

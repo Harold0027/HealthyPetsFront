@@ -9,7 +9,7 @@ const NavbarAdmin = () => {
       </Link>
 
       <div className="nav-links d-flex gap-3">
-        <Link to="/admin/usuarios" className="nav-link">Usuarios</Link>
+        <Link to="/admin/usuario" className="nav-link">Usuarios</Link>
         <Link to="/admin/veterinarios" className="nav-link">Veterinarios</Link>
         <Link to="/admin/pacientes" className="nav-link">Pacientes</Link>
         <Link to="/admin/horarios" className="nav-link">Horarios</Link>

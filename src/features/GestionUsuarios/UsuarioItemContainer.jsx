@@ -9,8 +9,8 @@ const UsuarioItemContainer = () => {
     try {
       const data = await UsuariosService.getAll();
       setUsuarios(data);
-    } catch (error) {
-      console.error("Error cargando usuarios:", error);
+    } catch (err) {
+      console.error("Error cargando usuarios:", err);
     }
   };
 
@@ -18,8 +18,8 @@ const UsuarioItemContainer = () => {
     try {
       await UsuariosService.remove(user.id);
       setUsuarios(usuarios.filter((u) => u.id !== user.id));
-    } catch (error) {
-      console.error("Error eliminando usuario:", error);
+    } catch (err) {
+      console.error("Error eliminando usuario:", err);
     }
   };
 
