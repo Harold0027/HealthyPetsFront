@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import UsuarioItem from "./UsuarioItem";
+import ListFormItem from "./ListFormItem";
 import { UsuariosService } from "../../services/UsuariosService";
 
 const UsuarioItemContainer = () => {
@@ -15,9 +15,10 @@ const UsuarioItemContainer = () => {
   };
 
   const handleDelete = async (user) => {
+    if (!window.confirm(`¿Eliminar al usuario ${user.fullName}?`)) return;
     try {
       await UsuariosService.remove(user.id);
-      setUsuarios(usuarios.filter((u) => u.id !== user.id));
+      fetchUsuarios();
     } catch (err) {
       console.error("Error eliminando usuario:", err);
     }
@@ -27,7 +28,16 @@ const UsuarioItemContainer = () => {
     fetchUsuarios();
   }, []);
 
-  return <UsuarioItem data={usuarios} onDelete={handleDelete} />;
+  const columns = [
+    { key: "id", label: "ID" },
+    { key: "fullName", label: "Nombre" },
+    { key: "email", label: "Email" },
+    { key: "role", label: "Rol" },
+    { key: "telefono", label: "Teléfono" },
+    { key: "direccion", label: "Dirección" },
+  ];
+
+  return <ListFormItem title="Usuarios" columns={columns} data={usuarios} onDelete={handleDelete} reload={fetchUsuarios} />;
 };
 
 export default UsuarioItemContainer;

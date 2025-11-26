@@ -1,84 +1,95 @@
-Front-healthypets /
-├── public/
-├── src/ 
-│   ├── assets/              # Imágenes, íconos, logos
-│   ├── components/          # Componentes comunes(nav,footer,items)
-│   │       └── CardServicio.jsx     
-│   │       └── CardVeterinario.jsx     
-│   │       └── ListFormItem.jsx     
-│   │       └── LoginForm.jsx     
-│   ├── features/            
-│   │   └── GestionUsuarios/(funcionalidades del crud usuarios)
-│   │       └── UsuarioItem.jsx       
-│   │       └── UsurioItemContainer.jsx       
-│   │       └── UsurioForm.jsx       
-│   │   └── GestionVeterinarios/(funcionalidades crud veterinarios,especialidad,horario)
-│   │       └── VeterinariosAdminItem.jsx   
-│   │       └── VeterinariosAdminItemContainer.jsx   
-│   │       └── VeterinariosAdminItemForm.jsx   
-│   │       └── VeterinariosList.jsx   
-│   │       └── VeterinariosContainer.jsx   
-│   │   └── GestionPacientes/(crud registro de mascotas)
-│   │       └── PacientesAdminItem.jsx
-│   │       └── PacientesAdminItemContainer.jsx
-│   │       └── PacientesForm.jsx
-│   │   └── GestionHorarios/(crud asignar y consultar horarios)
-│   │       └── HorariosAdminItem
-│   │       └── HorariosAdminItemContainer
-│   │       └── HorariosAdminForm
-│   │   └── GestionServicios/(mostrar servicios brindados)
-│   │       └── ServiciosList.jsx
-│   │       └── ServiciosListContainer.jsx
-│   │   └── GestionCitas/(registrar citas)
-│   │       └── CitasAdminItem.jsx
-│   │       └── CitasAdminItemContainer.jsx
-│   │       └── CitasAdminForm.jsx
-│   │       └── CitasList.jsx
-│   │       └── CitasListContainer.jsx
-│   │   └── GestionHistorialMedico/(consultar historial del paciente)
-│   │       └── HistorialItem.jsx
-│   │       └── HistorialItemContainer.jsx
-│   │   └── GestionReportes/(generar reportes del servicio)
-│   │   └──Notificaciones /(pestaña de notificacion del usuario)
-│   ├── layouts/             # Layouts con navbar/sidebar
-│   │   └── AdminLayout.jsx
-│   │   └── Footer.jsx
-│   │   └── NavbarAdmin.jsx
-│   │   └── NavbarUser.jsx
-│   │   └── UserLayout.jsx
-│   ├── pages/               # Páginas conectadas al router
-│   │   └── Usuarios.jsx(CRUD)/
-│   │   └── VeterinariosAdmin.jsx/(crud veterinarios,especialidad,horario)
-│   │   └── VeterinariosUser.jsx/(mostrar veterinarios)
-│   │   └── Pacientes.jsx/(crud registro de mascotas)
-│   │   └── HorariosAdmin.jsx/(crud, asignar y consultar horarios)
-│   │   └── HorariosUser.jsx/( consultar horarios)
-│   │   └── Servicios.jsx/(mostrar servicios brindados)
-│   │   └── CitasAdmin.jsx/(crud citas)
-│   │   └── CitasUser.jsx/(consultar citas)
-│   │   └── HistorialMedico.jsx/(consultar historial del paciente)
-│   │   └── Reportes.jsx/(generar reports del servicio)
-│   │   └──Notificaciones.jsx /(pestaña de notificacion del usuario)
-│   ├── services/            # API calls hacia el backend Spring Boot
-│   │   ├── api.js           
-│   │   └── authService.js   (login, logout)
-│   │   └── UsuariosService.js   (login, logout)
-│   │   └── VeterinariosService.js   (login, logout)
-│   │   └── PacientesService.js   (login, logout)
-│   │   └── HorariosService.js   (login, logout)
-│   │   └── ServiciosService.js   (login, logout)
-│   │   └── CitasService.js   (login, logout)
-│   │   └── HistorialService.js   (login, logout)
-│   ├── contexts/            # Contexto de autenticación, tema, etc.
-│   │   └── AuthContext.jsx   (manetener usuario activo)
-│   ├── utils/               # Funciones auxiliares
-│   ├── App.js               # Componente raíz
-│   └── main.js              # Punto de entrada
-│   └── index.html
-├── .env                     # Variables de entorno (BACKEND_URL, etc.)
-├── .gitignore
-├── jsconfig.json            # Importaciones absolutas
-├── package.json
-├── vite.config.js           # Configuración de Vite
-└── README.md
-
+└── 📁HealthyPetsFront
+    └── 📁public
+        ├── vite.svg
+    └── 📁src
+        └── 📁components
+            ├── CardServicio.jsx
+            ├── CardVeterinario.jsx
+            ├── LoginForm.jsx
+        └── 📁context
+            ├── authContext.jsx
+        └── 📁features
+            └── 📁GestionCitas
+                ├── CitasAdminForm.jsx
+                ├── CitasAdminItem.jsx
+                ├── CitasAdminItemContainer.jsx
+                ├── CitasList.jsx
+                ├── CitasListContainer.jsx
+            └── 📁GestionHistorialMedico
+                ├── HistorialItem.jsx
+                ├── HistorialItemContainer.jsx
+            └── 📁GestionHorarios
+                ├── HorariosAdminForm.jsx
+                ├── HorariosAdminItem.jsx
+                ├── HorariosAdminItemContainer.jsx
+                ├── HorariosItemList.jsx
+                ├── HorariosItemListContainer.jsx
+            └── 📁GestionPacientes
+                ├── PacientesAdminItem.jsx
+                ├── PacientesAdminItemContainer.jsx
+                ├── PacientesContainer.jsx
+                ├── PacientesForm.jsx
+                ├── PacientesList.jsx
+            └── 📁GestionServicios
+                ├── ServiciosList.jsx
+                ├── ServiciosListContainer.jsx
+            └── 📁GestionUsuarios
+                ├── UsuarioForm.jsx (se actualiza o crea el dato según se requiera)
+                ├── UsuarioItem.jsx (llama al listformItem)
+                ├── UsuarioItemContainer.jsx (llama al item)
+                ├── ListFormItem.jsx (llama al usuarioform, según se aprete el boton edit o create tambien debe llamar a los services correspondientes)
+            └── 📁GestionVeterinarios
+                ├── VeterinariosAdminItem.jsx
+                ├── VeterinariosAdminItemContainer.jsx
+                ├── VeterinariosAdminItemForm.jsx
+                ├── VeterinariosList.jsx
+                ├── VeterinariosListContainer.jsx
+            └── 📁Login
+                ├── LoginContainer.jsx
+        └── 📁layouts
+            ├── AdminLayout.jsx
+            ├── Footer.jsx
+            ├── NavbarAdmin.jsx
+            ├── NavbarUser.jsx
+            ├── UserLayout.jsx
+        └── 📁pages
+            ├── CitasAdmin.jsx
+            ├── CitasUser.jsx
+            ├── Editar.jsx
+            ├── HistorialMedico.jsx
+            ├── Home.jsx
+            ├── HorariosAdmin.jsx
+            ├── HorariosUser.jsx
+            ├── Notificaciones.jsx
+            ├── Pacientes.jsx
+            ├── PacientesAdmin.jsx
+            ├── Reportes.jsx
+            ├── Servicios.jsx
+            ├── Usuarios.jsx (llama al container)
+            ├── VeterinariosAdmin.jsx
+            ├── VeterinariosUser.jsx
+        └── 📁services
+            ├── api.js
+            ├── authService.js
+            ├── CitasService.js
+            ├── HistorialService.js
+            ├── HorarioService.js
+            ├── PacientesService.js
+            ├── ServiciosService.js
+            ├── UsuariosService.js
+            ├── VeterinariosService.js
+        └── 📁utils
+            ├── FormConfig.js
+        ├── App.css
+        ├── App.jsx
+        ├── index.css
+        ├── main.jsx
+    ├── .env
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── index.html
+    ├── LICENSE
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── vite.config.js

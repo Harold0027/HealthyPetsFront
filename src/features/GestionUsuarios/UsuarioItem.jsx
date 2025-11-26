@@ -1,4 +1,4 @@
-import ListFormItem from "../../components/ListFormItem";
+import ListFormItem from "./ListFormItem";
 
 const UsuarioItem = ({ data, onDelete }) => {
   const columns = [
