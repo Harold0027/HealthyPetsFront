@@ -2,6 +2,9 @@
     └── 📁public
         ├── vite.svg
     └── 📁src
+        └── 📁assets
+            ├── logo.png
+            ├── react.svg
         └── 📁components
             ├── CardServicio.jsx
             ├── CardVeterinario.jsx
@@ -15,6 +18,7 @@
                 ├── CitasAdminItemContainer.jsx
                 ├── CitasList.jsx
                 ├── CitasListContainer.jsx
+                ├── ListFormItem.jsx
             └── 📁GestionHistorialMedico
                 ├── HistorialItem.jsx
                 ├── HistorialItemContainer.jsx
@@ -24,7 +28,9 @@
                 ├── HorariosAdminItemContainer.jsx
                 ├── HorariosItemList.jsx
                 ├── HorariosItemListContainer.jsx
+                ├── ListFormItem.jsx
             └── 📁GestionPacientes
+                ├── ListFormItem.jsx
                 ├── PacientesAdminItem.jsx
                 ├── PacientesAdminItemContainer.jsx
                 ├── PacientesContainer.jsx
@@ -34,11 +40,12 @@
                 ├── ServiciosList.jsx
                 ├── ServiciosListContainer.jsx
             └── 📁GestionUsuarios
-                ├── UsuarioForm.jsx (se actualiza o crea el dato según se requiera)
-                ├── UsuarioItem.jsx (llama al listformItem)
-                ├── UsuarioItemContainer.jsx (llama al item)
-                ├── ListFormItem.jsx (llama al usuarioform, según se aprete el boton edit o create tambien debe llamar a los services correspondientes)
+                ├── ListFormItem.jsx
+                ├── UsuarioForm.jsx
+                ├── UsuarioItem.jsx
+                ├── UsuarioItemContainer.jsx
             └── 📁GestionVeterinarios
+                ├── ListFormItem.jsx
                 ├── VeterinariosAdminItem.jsx
                 ├── VeterinariosAdminItemContainer.jsx
                 ├── VeterinariosAdminItemForm.jsx
@@ -65,7 +72,7 @@
             ├── PacientesAdmin.jsx
             ├── Reportes.jsx
             ├── Servicios.jsx
-            ├── Usuarios.jsx (llama al container)
+            ├── Usuarios.jsx
             ├── VeterinariosAdmin.jsx
             ├── VeterinariosUser.jsx
         └── 📁services

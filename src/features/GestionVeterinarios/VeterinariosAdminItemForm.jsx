@@ -1,71 +1,103 @@
-import { Table, Button, Card } from "react-bootstrap";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { VeterinariosService } from "../../services/VeterinariosService";
 
-const VeterinariosAdminForm = ({ title, columns, data, onDelete, category }) => {
+const VeterinariosForm = ({ show, onClose, initialData, reload }) => {
+  const [vet, setVet] = useState({
+    nombre: "",
+    especialidad: "",
+    correo: "",
+    telefono: "",
+    direccion: "",
+  });
+
+  useEffect(() => {
+    if (initialData) setVet(initialData);
+  }, [initialData]);
+
+  const handleChange = (e) => {
+    setVet({ ...vet, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (initialData) {
+        await VeterinariosService.update(initialData.id, vet);
+      } else {
+        await VeterinariosService.create(vet);
+      }
+      reload();
+      onClose();
+    } catch (error) {
+      console.error("Error guardando veterinario:", error);
+    }
+  };
+
   return (
-    <Card className="shadow-sm mb-4">
-      <Card.Header className="d-flex justify-content-between align-items-center">
-        <h4>{title}</h4>
-        <Button
-          as={Link}
-          to={`/admin/${category}/nuevo`}
-          variant="dark"
-          className="d-flex align-items-center gap-2"
-        >
-          <FaPlus /> Agregar
+    <Modal show={show} onHide={onClose} centered size="lg">
+      <Modal.Header closeButton>
+        <Modal.Title>{initialData ? "Editar Veterinario" : "Nuevo Veterinario"}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              name="nombre"
+              value={vet.nombre}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Especialidad</Form.Label>
+            <Form.Control
+              name="especialidad"
+              value={vet.especialidad}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Correo</Form.Label>
+            <Form.Control
+              name="correo"
+              type="email"
+              value={vet.correo}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Teléfono</Form.Label>
+            <Form.Control
+              name="telefono"
+              value={vet.telefono}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Dirección</Form.Label>
+            <Form.Control
+              name="direccion"
+              value={vet.direccion}
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>Cerrar</Button>
+        <Button variant="primary" onClick={handleSubmit}>
+          {initialData ? "Actualizar" : "Crear"}
         </Button>
-      </Card.Header>
-      <Card.Body>
-        <Table striped bordered hover responsive className="align-middle">
-          <thead className="table-dark">
-            <tr>
-              {columns.map(col => (
-                <th key={col.key} className="text-center">{col.label}</th>
-              ))}
-              <th className="text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length + 1} className="text-center text-muted py-4">
-                  No hay registros
-                </td>
-              </tr>
-            ) : (
-              data.map(item => (
-                <tr key={item.id}>
-                  {columns.map(col => (
-                    <td key={col.key} className="text-center">{item[col.key]}</td>
-                  ))}
-                  <td className="text-center">
-                    <Button
-                      as={Link}
-                      to={`/admin/${category}/editar/${item.id}`}
-                      variant="warning"
-                      size="sm"
-                      className="me-2 d-flex align-items-center gap-1"
-                    >
-                      <FaEdit /> Editar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      className="d-flex align-items-center gap-1"
-                      onClick={() => onDelete(item)}
-                    >
-                      <FaTrash /> Eliminar
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
-      </Card.Body>
-    </Card>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
-export default VeterinariosAdminForm;
+export default VeterinariosForm;

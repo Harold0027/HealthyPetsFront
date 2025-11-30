@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import VeterinariosAdminItem from "./VeterinariosAdminItem";
-
-// ✔ Import correcto del servicio
 import { VeterinariosService } from "../../services/VeterinariosService";
 
 const VeterinariosAdminItemContainer = () => {
@@ -10,7 +8,8 @@ const VeterinariosAdminItemContainer = () => {
   const cargarVeterinarios = async () => {
     try {
       const data = await VeterinariosService.getAll();
-      setVeterinarios(data);
+      // Mapear id si viene _id
+      setVeterinarios(data.map(v => ({ ...v, id: v.id ?? v._id })));
     } catch (error) {
       console.error("Error al cargar veterinarios:", error);
     }
@@ -30,19 +29,11 @@ const VeterinariosAdminItemContainer = () => {
   }, []);
 
   return (
-    <div>
-      {veterinarios.length > 0 ? (
-        veterinarios.map((v) => (
-          <VeterinariosAdminItem
-            key={v.id}
-            veterinario={v}
-            eliminar={eliminar}
-          />
-        ))
-      ) : (
-        <p>No hay veterinarios registrados.</p>
-      )}
-    </div>
+    <VeterinariosAdminItem
+      data={veterinarios}
+      onDelete={eliminar}
+      reload={cargarVeterinarios}
+    />
   );
 };
 

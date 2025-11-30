@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 const NavbarAdmin = () => {
   return (
     <nav className="navbar-admin d-flex align-items-center justify-content-between px-4 py-2 shadow-sm">
-      <Link to="/">
+      <Link to="/home">
         {<img src={logo} alt="logo" style= {{width: "3rem"}}/>}
       </Link>
 

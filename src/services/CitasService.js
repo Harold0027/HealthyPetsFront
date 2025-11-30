@@ -8,18 +8,15 @@ export const CitasService = {
     return res.data;
   },
 
-  getById: async (id) => {
-    const res = await api.get(`${BASE_URL}/${id}`);
-    return res.data;
-  },
-
   create: async (data) => {
-    const res = await api.post(BASE_URL, data);
-    return res.data;
-  },
-
-  update: async (id, data) => {
-    const res = await api.put(`${BASE_URL}/${id}`, data);
+    const payload = {
+      pacienteId: data.pacienteId,
+      veterinarioId: data.veterinarioId,
+      fecha: data.fecha,
+      hora: data.hora,
+      motivo: data.motivo,
+    };
+    const res = await api.post(BASE_URL, payload);
     return res.data;
   },
 

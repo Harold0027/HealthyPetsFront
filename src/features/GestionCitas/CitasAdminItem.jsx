@@ -1,23 +1,25 @@
+import ListFormItem from "./ListFormItem";
 import CitasAdminForm from "./CitasAdminForm";
 
-const CitasAdminItem = ({ data, onDelete }) => {
+const CitasAdminItem = ({ data, onDelete, reload }) => {
   const columns = [
     { key: "id", label: "ID" },
-    { key: "paciente", label: "Paciente" },
-    { key: "propietario", label: "Propietario" },
-    { key: "veterinario", label: "Veterinario" },
+    { key: "pacienteNombre", label: "Paciente" },
+    { key: "duenoNombre", label: "Propietario" },
+    { key: "veterinarioNombre", label: "Veterinario" },
     { key: "fecha", label: "Fecha" },
     { key: "hora", label: "Hora" },
     { key: "motivo", label: "Motivo" },
   ];
 
   return (
-    <CitasAdminForm
+    <ListFormItem
       title="Gestión de Citas"
-      category="citas"
       data={data}
       columns={columns}
+      FormComponent={CitasAdminForm}
       onDelete={onDelete}
+      reload={reload}
     />
   );
 };

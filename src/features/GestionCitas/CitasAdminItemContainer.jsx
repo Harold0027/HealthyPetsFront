@@ -14,10 +14,10 @@ const CitasAdminItemContainer = () => {
     }
   };
 
-  const handleDelete = async (cita) => {
+  const handleDelete = async (id) => {
     try {
-      await CitasService.remove(cita.id);
-      setCitas(citas.filter(c => c.id !== cita.id));
+      await CitasService.remove(id);
+      fetchCitas();
     } catch (error) {
       console.error("Error eliminando cita:", error);
     }
@@ -27,7 +27,13 @@ const CitasAdminItemContainer = () => {
     fetchCitas();
   }, []);
 
-  return <CitasAdminItem data={citas} onDelete={handleDelete} />;
+  return (
+    <CitasAdminItem
+      data={citas}
+      onDelete={handleDelete}
+      reload={fetchCitas}
+    />
+  );
 };
 
 export default CitasAdminItemContainer;

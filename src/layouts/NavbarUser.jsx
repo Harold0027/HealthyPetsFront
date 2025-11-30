@@ -32,13 +32,6 @@ const NavbarUser = () => {
           Citas
         </Link>
 
-        <Link className="text-decoration-none text-success fw-semibold" to="/historial">
-          Historial
-        </Link>
-
-        <Link className="text-success fs-5" to="/notificaciones">
-          🔔
-        </Link>
 
         {!user ? (
           <Link

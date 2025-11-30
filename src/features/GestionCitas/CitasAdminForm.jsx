@@ -1,69 +1,116 @@
-import { Table, Button, Card } from "react-bootstrap";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Form, Button, Card } from "react-bootstrap";
+import { CitasService } from "../../services/CitasService";
+import { PacientesService } from "../../services/PacientesService";
+import { VeterinariosService } from "../../services/VeterinariosService";
 
-const CitasAdminForm = ({ title, columns, data, onDelete, category }) => {
+const CitasAdminForm = ({ onClose, reload }) => {
+  const [form, setForm] = useState({
+    pacienteId: "",
+    veterinarioId: "",
+    fecha: "",
+    hora: "",
+    motivo: "",
+  });
+
+  const [pacientes, setPacientes] = useState([]);
+  const [veterinarios, setVeterinarios] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const pacs = await PacientesService.getAll();
+      const vets = await VeterinariosService.getAll();
+      setPacientes(pacs);
+      setVeterinarios(vets);
+    };
+    fetchData();
+  }, []);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await CitasService.create(form);
+      reload();
+      onClose();
+    } catch (err) {
+      console.error("Error guardando cita", err);
+    }
+  };
+
   return (
-    <Card className="shadow-sm mb-4">
-      <Card.Header className="d-flex justify-content-between align-items-center">
-        <h4>{title}</h4>
-        <Button
-          as={Link}
-          to={`/admin/${category}/nuevo`}
-          variant="dark"
-          className="d-flex align-items-center gap-2"
-        >
-          <FaPlus /> Agregar
+    <Card className="p-3">
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Paciente</Form.Label>
+          <Form.Select
+            name="pacienteId"
+            value={form.pacienteId}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione un paciente</option>
+            {pacientes.map((p) => (
+              <option key={p.id} value={p.id}>{p.nombre}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Veterinario</Form.Label>
+          <Form.Select
+            name="veterinarioId"
+            value={form.veterinarioId}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione un veterinario</option>
+            {veterinarios.map((v) => (
+              <option key={v.id} value={v.id}>{v.nombre}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Fecha</Form.Label>
+          <Form.Control
+            type="date"
+            name="fecha"
+            value={form.fecha}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Hora</Form.Label>
+          <Form.Control
+            type="time"
+            name="hora"
+            value={form.hora}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Motivo</Form.Label>
+          <Form.Control
+            type="text"
+            name="motivo"
+            value={form.motivo}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Button variant="dark" type="submit" className="w-100">
+          Crear Cita
         </Button>
-      </Card.Header>
-      <Card.Body>
-        <Table striped bordered hover responsive className="align-middle">
-          <thead className="table-dark">
-            <tr>
-              {columns.map(col => (
-                <th key={col.key} className="text-center">{col.label}</th>
-              ))}
-              <th className="text-center">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length + 1} className="text-center text-muted py-4">
-                  No hay registros
-                </td>
-              </tr>
-            ) : (
-              data.map(item => (
-                <tr key={item.id}>
-                  {columns.map(col => (
-                    <td key={col.key} className="text-center">{item[col.key]}</td>
-                  ))}
-                  <td className="text-center">
-                    <Button
-                      as={Link}
-                      to={`/admin/${category}/editar/${item.id}`}
-                      variant="warning"
-                      size="sm"
-                      className="me-2 d-flex align-items-center gap-1"
-                    >
-                      <FaEdit /> Editar
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      className="d-flex align-items-center gap-1"
-                      onClick={() => onDelete(item)}
-                    >
-                      <FaTrash /> Eliminar
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </Table>
-      </Card.Body>
+      </Form>
     </Card>
   );
 };

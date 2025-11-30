@@ -1,6 +1,6 @@
-import PacientesForm from "./PacientesForm";
+import ListFormItem from "./ListFormItem";
 
-const PacientesAdminItem = ({ data, onDelete }) => {
+const PacientesAdminItem = ({ data, onDelete, reload }) => {
   const columns = [
     { key: "id", label: "ID" },
     { key: "duenoId", label: "Propietario ID" },
@@ -12,12 +12,13 @@ const PacientesAdminItem = ({ data, onDelete }) => {
   ];
 
   return (
-    <PacientesForm
-      title="Gestión de Pacientes"
-      category="pacientes"
-      data={data}
+    <ListFormItem
+      title="Pacientes"
       columns={columns}
+      data={data}
       onDelete={onDelete}
+      category="pacientes"
+      reload={reload}
     />
   );
 };

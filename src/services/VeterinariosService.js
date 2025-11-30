@@ -1,6 +1,6 @@
 import api from "./api";
 
-const BASE_URL = "/vets"; // Ruta del backend
+const BASE_URL = "/veterinarios";
 
 export const VeterinariosService = {
   getAll: async () => {

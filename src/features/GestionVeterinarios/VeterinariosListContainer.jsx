@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import VeterinariosList from "./VeterinariosList";
-
-// ✔ Import correcto
 import { VeterinariosService } from "../../services/VeterinariosService";
 
 const VeterinariosListContainer = () => {
@@ -9,7 +7,7 @@ const VeterinariosListContainer = () => {
 
   const cargarVeterinarios = async () => {
     try {
-      const data = await VeterinariosService.getAll(); // ✔ Correcto
+      const data = await VeterinariosService.getAll(); 
       setVeterinarios(data);
     } catch (error) {
       console.error("Error cargando veterinarios:", error);
