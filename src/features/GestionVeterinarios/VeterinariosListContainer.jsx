@@ -7,7 +7,7 @@ const VeterinariosListContainer = () => {
 
   const cargarVeterinarios = async () => {
     try {
-      const data = await VeterinariosService.getAll(); 
+      const data = await VeterinariosService.getAll();
       setVeterinarios(data);
     } catch (error) {
       console.error("Error cargando veterinarios:", error);
@@ -18,15 +18,7 @@ const VeterinariosListContainer = () => {
     cargarVeterinarios();
   }, []);
 
-  return (
-    <div>
-      {veterinarios.length > 0 ? (
-        <VeterinariosList veterinarios={veterinarios} />
-      ) : (
-        <p>No hay veterinarios registrados.</p>
-      )}
-    </div>
-  );
+  return <VeterinariosList veterinarios={veterinarios} />;
 };
 
 export default VeterinariosListContainer;

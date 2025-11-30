@@ -52,7 +52,17 @@ const ListFormItem = ({ title, columns, data, onDelete, category, reload }) => {
                 data.map((item) => (
                   <tr key={item.id}>
                     {columns.map((col) => (
-                      <td key={col.key} className="text-center">{item[col.key]}</td>
+                      <td key={col.key} className="text-center">
+                        {col.key === "imagenUrl" && item[col.key] ? (
+                          <img
+                            src={item[col.key]}
+                            alt={item.nombre}
+                            style={{ width: "50px", borderRadius: "50%" }}
+                          />
+                        ) : (
+                          item[col.key]
+                        )}
+                      </td>
                     ))}
                     <td className="text-center">
                       <Button

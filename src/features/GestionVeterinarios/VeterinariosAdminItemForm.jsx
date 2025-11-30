@@ -9,6 +9,8 @@ const VeterinariosForm = ({ show, onClose, initialData, reload }) => {
     correo: "",
     telefono: "",
     direccion: "",
+    informacion: "",
+    imagenUrl: "",
   });
 
   useEffect(() => {
@@ -86,6 +88,27 @@ const VeterinariosForm = ({ show, onClose, initialData, reload }) => {
               name="direccion"
               value={vet.direccion}
               onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Información</Form.Label>
+            <Form.Control
+              name="informacion"
+              value={vet.informacion}
+              onChange={handleChange}
+              as="textarea"
+              rows={3}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Imagen URL</Form.Label>
+            <Form.Control
+              name="imagenUrl"
+              value={vet.imagenUrl}
+              onChange={handleChange}
+              placeholder="https://ui-avatars.com/api/?name=Nombre+Apellido"
             />
           </Form.Group>
         </Form>

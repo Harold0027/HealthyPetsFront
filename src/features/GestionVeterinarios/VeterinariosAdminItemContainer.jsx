@@ -8,7 +8,6 @@ const VeterinariosAdminItemContainer = () => {
   const cargarVeterinarios = async () => {
     try {
       const data = await VeterinariosService.getAll();
-      // Mapear id si viene _id
       setVeterinarios(data.map(v => ({ ...v, id: v.id ?? v._id })));
     } catch (error) {
       console.error("Error al cargar veterinarios:", error);
