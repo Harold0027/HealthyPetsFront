@@ -1,3 +1,4 @@
+```
 └── 📁HealthyPetsFront
     └── 📁public
         ├── vite.svg
@@ -6,8 +7,6 @@
             ├── logo.png
             ├── react.svg
         └── 📁components
-            ├── CardServicio.jsx
-            ├── CardVeterinario.jsx
             ├── LoginForm.jsx
         └── 📁context
             ├── authContext.jsx
@@ -16,12 +15,13 @@
                 ├── CitasAdminForm.jsx
                 ├── CitasAdminItem.jsx
                 ├── CitasAdminItemContainer.jsx
+                ├── ListFormItem.jsx
+            └── 📁GestionCitasUser
                 ├── CitasList.jsx
                 ├── CitasListContainer.jsx
-                ├── ListFormItem.jsx
-            └── 📁GestionHistorialMedico
-                ├── HistorialItem.jsx
-                ├── HistorialItemContainer.jsx
+                ├── HorariosDisponibles.jsx
+                ├── MisCitas.jsx
+                ├── NuevaCitaModal.jsx
             └── 📁GestionHorarios
                 ├── HorariosAdminForm.jsx
                 ├── HorariosAdminItem.jsx
@@ -38,7 +38,6 @@
                 ├── PacientesList.jsx
             └── 📁GestionServicios
                 ├── ServiciosList.jsx
-                ├── ServiciosListContainer.jsx
             └── 📁GestionUsuarios
                 ├── ListFormItem.jsx
                 ├── UsuarioForm.jsx
@@ -62,15 +61,12 @@
         └── 📁pages
             ├── CitasAdmin.jsx
             ├── CitasUser.jsx
-            ├── Editar.jsx
-            ├── HistorialMedico.jsx
             ├── Home.jsx
             ├── HorariosAdmin.jsx
             ├── HorariosUser.jsx
-            ├── Notificaciones.jsx
+            ├── Nosotros.jsx
             ├── Pacientes.jsx
             ├── PacientesAdmin.jsx
-            ├── Reportes.jsx
             ├── Servicios.jsx
             ├── Usuarios.jsx
             ├── VeterinariosAdmin.jsx
@@ -100,3 +96,4 @@
     ├── package.json
     ├── README.md
     └── vite.config.js
+```

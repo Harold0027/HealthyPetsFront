@@ -5,7 +5,7 @@ const VeterinariosList = ({ veterinarios }) => {
   return (
     <Container className="my-5">
       <h2 className="mb-4 text-center fw-bold" style={{ color: "#2e7d32" }}>
-        Veterinarios Disponibles
+        Staff
       </h2>
 
       <Row xs={1} sm={2} md={3} className="g-4">

@@ -1,10 +1,10 @@
 import UserLayout from "../layouts/UserLayout";
-import CitasListContainer from "../features/GestionCitas/CitasListContainer";
+import CitasList from "../features/GestionCitasUser/CitasList";
 
 const CitasUser = () => {
   return (
     <UserLayout>
-      <CitasListContainer />
+      <CitasList />
     </UserLayout>
   );
 };

@@ -5,9 +5,9 @@ const UserLayout = ({ children }) => {
   return (
     <div>
         <NavbarUser />
-        <main className="flex-grow-1 container my-4">
+          <main className="flex-grow-1 w-100" style={{ padding: "2rem" }}>
             {children}
-        </main>
+          </main>
         <Footer />
     </div>
 

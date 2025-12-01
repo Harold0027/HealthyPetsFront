@@ -20,8 +20,12 @@ const NavbarUser = () => {
 
       <div className="d-flex gap-4 align-items-center">
 
+        <Link className="text-decoration-none text-success fw-semibold" to="/nosotros">
+          Nosotros
+        </Link>
+
         <Link className="text-decoration-none text-success fw-semibold" to="/veterinarios">
-          Veterinarios
+          Staff
         </Link>
 
         <Link className="text-decoration-none text-success fw-semibold" to="/servicios">
