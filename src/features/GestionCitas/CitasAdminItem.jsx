@@ -6,7 +6,6 @@ const CitasAdminItem = ({ data, onDelete, reload }) => {
     { key: "id", label: "ID" },
     { key: "pacienteNombre", label: "Paciente" },
     { key: "duenoNombre", label: "Propietario" },
-    { key: "veterinarioNombre", label: "Veterinario" },
     { key: "fecha", label: "Fecha" },
     { key: "hora", label: "Hora" },
     { key: "motivo", label: "Motivo" },

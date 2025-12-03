@@ -11,7 +11,6 @@ export const CitasService = {
   create: async (data) => {
     const payload = {
       pacienteId: data.pacienteId,
-      veterinarioId: data.veterinarioId,
       fecha: data.fecha,
       hora: data.hora,
       motivo: data.motivo,

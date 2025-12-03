@@ -2,26 +2,21 @@ import { useState, useEffect } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import { CitasService } from "../../services/CitasService";
 import { PacientesService } from "../../services/PacientesService";
-import { VeterinariosService } from "../../services/VeterinariosService";
 
 const CitasAdminForm = ({ onClose, reload }) => {
   const [form, setForm] = useState({
     pacienteId: "",
-    veterinarioId: "",
     fecha: "",
     hora: "",
     motivo: "",
   });
 
   const [pacientes, setPacientes] = useState([]);
-  const [veterinarios, setVeterinarios] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const pacs = await PacientesService.getAll();
-      const vets = await VeterinariosService.getAll();
       setPacientes(pacs);
-      setVeterinarios(vets);
     };
     fetchData();
   }, []);
@@ -38,6 +33,7 @@ const CitasAdminForm = ({ onClose, reload }) => {
       onClose();
     } catch (err) {
       console.error("Error guardando cita", err);
+      alert(err.response?.data?.message || "Error guardando cita");
     }
   };
 
@@ -55,21 +51,6 @@ const CitasAdminForm = ({ onClose, reload }) => {
             <option value="">Seleccione un paciente</option>
             {pacientes.map((p) => (
               <option key={p.id} value={p.id}>{p.nombre}</option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Veterinario</Form.Label>
-          <Form.Select
-            name="veterinarioId"
-            value={form.veterinarioId}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Seleccione un veterinario</option>
-            {veterinarios.map((v) => (
-              <option key={v.id} value={v.id}>{v.nombre}</option>
             ))}
           </Form.Select>
         </Form.Group>
